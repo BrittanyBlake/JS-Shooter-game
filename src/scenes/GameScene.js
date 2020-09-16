@@ -1,30 +1,94 @@
+import player from "../../assets/images/playershoot.png";
+import attack from "../../assets/images/effects.png";
+import enemy3 from "../../assets/images/enemy3attack.png";
+import enemy2 from "../../assets/images/enemy2walk.png";
+import enemy1 from "../../assets/images/enemy1attack.png";
+import coin from "../../assets/images/star.png";
+import frontgrass from "../../assets/images/frontgrass.png";
+import cloud4 from "../../assets/images/cloud4.png";
+import cloud3 from "../../assets/images/cloud3.png";
+import cloud2 from "../../assets/images/cloud2.png";
+import cloud1 from "../../assets/images/cloud1.png";
+import clouds from "../../assets/images/clouds.png";
+import lumb from "../../assets/images/lumb.png";
+import light from "../../assets/images/light.png";
+import flower2 from "../../assets/images/flower2.png";
+import flower1 from "../../assets/images/flower1.png";
+import rock3 from "../../assets/images/rock3.png"
+import rock2 from "../../assets/images/rock3.png"
+import rock1 from "../../assets/images/rock1.png"
+import tree from "../../assets/images/tree.png"
+import ground from "../../assets/images/ground.png"
+import grass3 from "../../assets/images/grass3.png"
+import grass2 from "../../assets/images/grass2.png"
+import grass1 from "../../assets/images/grass1.png"
+import mountain from "../../assets/images/mountains.png";
+import sky from "../../assets/images/sky-BG.png";
+
 export default class GameScene extends Phaser.Scene {
   constructor() {
     super("game-scene");
   }
 
   preload() {
-    this.load.image("sky", "assets/images/sky-BG.png");
-    this.load.image("mountain", "assets/images/mountains.png");
-    this.load.image("grass2", "assets/images/grass2.png");
-    this.load.image("grass1", "assets/images/grass1.png");
-    this.load.image("grass3", "assets/images/grass3.png");
-    this.load.image("ground", "assets/images/ground.png");
-    this.load.image("tree", "assets/images/tree.png");
-    this.load.image("rock1", "assets/images/rock1.png");
-    this.load.image("rock2", "assets/images/rock2.png");
-    this.load.image("rock3", "assets/images/rock3.png");
-    this.load.image("flower1", "assets/images/flower1.png");
-    this.load.image("flower2", "assets/images/flower2.png");
-    this.load.image("light", "assets/images/light.png");
-    this.load.image("lumb", "assets/images/lumb.png");
-    this.load.image("clouds", "assets/images/clouds.png");
-    this.load.image("cloud1", "assets/images/cloud1.png");
-    this.load.image("cloud2", "assets/images/cloud2.png");
-    this.load.image("cloud3", "assets/images/cloud3.png");
-    this.load.image("cloud4", "assets/images/cloud4.png");
-    this.load.image("frontgrass", "assets/images/frontgrass.png");
+    this.load.image("sky", sky);
+    this.load.image("mountain", mountain);
+    this.load.image("grass2", grass2);
+    this.load.image("grass1", grass1);
+    this.load.image("grass3", grass3);
+    this.load.image("ground", ground);
+    this.load.image("tree", tree);
+    this.load.image("rock1", rock1);
+    this.load.image("rock2", rock2);
+    this.load.image("rock3", rock3);
+    this.load.image("flower1", flower1);
+    this.load.image("flower2", flower2);
+    this.load.image("light", light);
+    this.load.image("lumb", lumb);
+    this.load.image("clouds", clouds);
+    this.load.image("cloud1", cloud1);
+    this.load.image("cloud2", cloud2);
+    this.load.image("cloud3", cloud3);
+    this.load.image("cloud4", cloud4);
+    this.load.image("frontgrass", frontgrass);
+    this.load.spritesheet("coin", coin, { frameWidth: 70, frameHeight: 69 });
+    this.load.spritesheet("enemy1", enemy1, {
+      frameWidth: 125,
+      frameHeight: 110.33,
+    });
+    this.load.spritesheet("enemy2", enemy2, {
+      frameWidth: 125,
+      frameHeight: 110.33,
+    });
+    this.load.spritesheet("enemy3", enemy3, {
+      frameWidth: 125,
+      frameHeight: 110.33,
+    });
+    this.load.spritesheet("attack", attack, {
+      frameWidth: 110,
+      frameHeight: 160,
+    });
+    this.load.spritesheet("player", player, {
+      frameWidth: 50.5,
+      frameHeight: 52,
+      margin: 2,
+      spacing: 2,
+    });
     this.cursors = this.input.keyboard.createCursorKeys();
+  }
+  
+
+  backgroundRepeat(scene, width, height, count, imageName, scrollSpeed, origin1, origin2, scale1, scale2) {
+    let x = 0;
+
+    for (let i = 0; i < count; i++) {
+      scene.add
+        .image(width + x, height, imageName)
+        .setOrigin(origin1, origin2)
+        .setScrollFactor(scrollSpeed)
+        .setScale(scale1, scale2);
+      x += scene.scale.width;
+    }
   }
 
   create() {
@@ -33,32 +97,103 @@ export default class GameScene extends Phaser.Scene {
 
     this.add.image(width * 0.5, height * 0.5, "sky").setScrollFactor(0);
 
-    // this.clouds = this.add.image(0, height * 0.35, "clouds").setOrigin(0, 1);
-    // this.clouds.setScale(0.5, 0.5);
+    this.backgroundRepeat(
+      this,
+      width * 0.15,
+      height * 0.5,
+      1,
+      "cloud2",
+      0.25,
+      0,
+      1,
+      0.5,
+      0.5
+    );
 
-    //  this.cloud1 = this.add.image(0, height, "cloud1").setOrigin(0, 1);
-    //  this.clouds1.setScale(0.5, 0.5);
-    this.cloud2 = this.add
-      .image(width * 0.15, height * 0.5, "cloud2")
-      .setOrigin(0, 1);
-    this.cloud2.setScale(0.5, 0.5).setScrollFactor(0.25);
+    this.backgroundRepeat(
+      this,
+      width / 2.5,
+      height * 0.25,
+      1,
+      "cloud3",
+      0.35,
+      0,
+      1,
+      0.5,
+      0.5
+    );
 
-    this.cloud3 = this.add
-      .image(width / 2.5, height * 0.25, "cloud3")
-      .setOrigin(0, 1);
-    this.cloud3.setScale(0.5, 0.5).setScrollFactor(0.35);
+    this.backgroundRepeat(
+      this,
+      0,
+      height * 0.35,
+      1,
+      "cloud4",
+      0.25,
+      0,
+      1,
+      0.5,
+      0.5
+    );
 
-    this.cloud4 = this.add.image(0, height * 0.35, "cloud4").setOrigin(0, 1);
-    this.cloud4.setScale(0.5, 0.5).setScrollFactor(0.25);
+    this.backgroundRepeat(this, 0, height, 1, "mountain", 0.45, 0, 1, 0.5, 0.5);
+    this.backgroundRepeat(
+      this,
+      width / 2.4,
+      height / 1.5,
+      1,
+      "grass1",
+      0.55,
+      0.4,0.4,
+      0.4,
+      0.4
+    );
+     this.backgroundRepeat(
+       this,
+       width / 1.4,
+       height / 1.5,
+       1,
+       "grass2",
+       0.55,
+       0.4,
+       0.4,
+       0.4,
+       0.4
+     );
+    //  this.backgroundRepeat(this, width / 7.5, height / 1.5, 1, );
+    // this.backgroundRepeat(this,)
+    // this.backgroundRepeat(this,)
+    // this.backgroundRepeat(this,)
+    // this.backgroundRepeat(this,)
+    // this.backgroundRepeat(this,)
+    // this.backgroundRepeat(this,)
+    // this.backgroundRepeat(this,)
+    // this.backgroundRepeat(this,)
+    // this.backgroundRepeat(this,)
+    // this.backgroundRepeat(this,)
+    // this.backgroundRepeat(this,)
+    // this.backgroundRepeat(this,)
+  
 
-    this.mountain = this.add.image(0, height, "mountain").setOrigin(0, 1);
-    this.mountain.setScale(0.5, 0.5).setScrollFactor(0.45);
+    //this.backgroundRepeat(this, width, height, count, imagename, scrollSpeed, origin1, origin2, scale1, scale2)
 
-    this.grass3 = this.add.image(width / 2.4, height / 1.5, "grass1");
-    this.grass3.setScale(0.4, 0.4).setScrollFactor(0.55);
 
-    this.grass2 = this.add.image(width / 1.4, height / 1.5, "grass2");
-    this.grass2.setScale(0.4, 0.4).setScrollFactor(0.55);
+    // this.cloud3 = this.add
+    //   .image(width / 2.5, height * 0.25, "cloud3")
+    //   .setOrigin(0, 1);
+    // this.cloud3.setScale(0.5, 0.5).setScrollFactor(0.35);
+
+    // this.cloud4 = this.add.image(0, height * 0.35, "cloud4").setOrigin(0, 1);
+    // this.cloud4.setScale(0.5, 0.5).setScrollFactor(0.25);
+
+    // this.mountain = this.add.image(0, height, "mountain").setOrigin(0, 1);
+    // this.mountain.setScale(0.5, 0.5).setScrollFactor(0.45);
+
+    // this.grass3 = this.add.image(width / 2.4, height / 1.5, "grass1");
+    // this.grass3.setScale(0.4, 0.4).setScrollFactor(0.55);
+
+    // this.grass2 = this.add.image(width / 1.4, height / 1.5, "grass2");
+    // this.grass2.setScale(0.4, 0.4).setScrollFactor(0.55);
 
     this.grass1 = this.add.image(width / 7.5, height / 1.5, "grass3");
     this.grass1.setScale(0.4, 0.4).setScrollFactor(0.55);
