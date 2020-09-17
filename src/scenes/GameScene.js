@@ -1,7 +1,7 @@
 import LocalStorage from "../Objects/localStorage";
 import EnemyGroup from "../helper/enemyGroup";
 import EnemyAttackGroup from "../helper/enemyAttackGroup";
-import LaserGroup from "../helper/playerAttackGroup";
+import AttackGroup from "../helper/playerAttackGroup";
 import playerAttack from "../../assets/images/effects2.png";
 import player from "../../assets/images/playerrun.png";
 import test from "../../assets/images/wolf.png";
@@ -169,6 +169,87 @@ export default class GameScene extends Phaser.Scene {
         child.anims.play("spin");
       });
     }
+  }
+
+  generateEnemies(enemyGroup, player) {
+    let enemySpawnPosition = 0;
+    for (let i = 0; i < 30; i += 1) {
+      enemyGroup.createEnemy(3000 + enemySpawnPosition, this.height * 0.2);
+      this.enemyAttackPosition(
+        3000 + enemySpawnPosition,
+        this.height * 0.753,
+        player,
+        this
+      );
+      enemySpawnPosition += this.width * 3.2;
+    }
+    enemyGroup.children.iterate((child) => {
+      child.setScale(0.45, 0.45);
+      child.body.offset.y = -80;
+    });
+  }
+
+  checkOverlap(AttackGroup, enemyGroup, player, enemyAttackGroup, scene) {
+    // eslint-disable-next-line no-undef
+    Phaser.Actions.Call(AttackGroup.getChildren(), (laserChild) => {
+      scene.backgroundRepeat(
+        scene,
+        0,
+        this.height,
+        "ground2",
+        1.25,
+        0.45,
+        0.45,
+        0,
+        1,
+        laserChild
+      );
+      // eslint-disable-next-line no-undef
+      Phaser.Actions.Call(enemyGroup.getChildren(), (enemyChild) => {
+        scene.backgroundRepeat(
+          scene,
+          this.width * 0.5,
+          this.height,
+          "ground2",
+          1.25,
+          0.45,
+          0.45,
+          0,
+          1,
+          enemyChild
+        );
+        scene.physics.add.overlap(
+          laserChild,
+          [enemyChild],
+          scene.stopEnemy,
+          null,
+          scene
+        );
+        scene.physics.add.overlap(
+          player,
+          [enemyChild],
+          scene.gameOver,
+          null,
+          scene
+        );
+      });
+    });
+    // eslint-disable-next-line no-undef
+    Phaser.Actions.Call(AttackGroup.getChildren(), (laserChild) => {
+      // eslint-disable-next-line no-undef
+      Phaser.Actions.Call(
+        enemyAttackGroup.getChildren(),
+        (enemyAttackChild) => {
+          scene.physics.add.overlap(
+            laserChild,
+            [enemyAttackChild],
+            scene.stopEnemy,
+            null,
+            scene
+          );
+        }
+      );
+    });
   }
 
   create() {
@@ -354,9 +435,99 @@ export default class GameScene extends Phaser.Scene {
     this.generateCoins();
     this.coinAnim(this.coins);
 
+    if (!this.anims.get("walking")) {
+      this.anims.create({
+        key: "walking",
+        frames: this.anims.generateFrameNames("player", {
+          frames: [19, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+        }),
+        frameRate: 15,
+        repeat: -1,
+      });
+    }
+
+    if (!this.anims.get("enemy")) {
+      this.anims.create({
+        key: "enemy",
+        frames: this.anims.generateFrameNames("enemy", {
+          frames: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+        }),
+        frameRate: 8,
+        repeat: -1,
+      });
+    }
+
+    this.AttackGroup = new AttackGroup(this);
+    this.enemyGroup = new EnemyGroup(this);
+
+    this.enemyAttackGroup = new EnemyAttackGroup(this);
+    this.enemySpawnPosition = 0;
+
+    this.generateEnemies(this.enemyGroup, this.player);
+    this.checkOverlap(
+      this.AttackGroup,
+      this.enemyGroup,
+      this.player,
+      this.enemyAttackGroup,
+      this
+    );
 
     this.cameras.main.setBounds(0, 0, this.width * 90, this.height);
     this.cameras.main.startFollow(this.player);
   }
+
+  enemyAttackPosition(x, y, player, scenes) {
+    this.time.addEvent({
+      delay: 9000,
+      loop: true,
+      callback: () => {
+        const attack = scenes.physics.add
+          .sprite(x, y, "enemyAttack", 0)
+          .setScale(0.6, 0.6);
+        attack.setVelocityX(-300);
+        attack.body.allowGravity = false;
+        scenes.physics.add.overlap(
+          player,
+          [attack],
+          scenes.gameOver,
+          null,
+          scenes
+        );
+        Phaser.Actions.Call(this.AttackGroup.getChildren(), (playerAttack) => {
+          scenes.physics.add.overlap(
+            playerAttack,
+            [attack],
+            scenes.stopEnemy,
+            null,
+            scenes
+          );
+        });
+      },
+    });
+  }
+
+  attackInterval() {
+    this.timer = false;
+    this.time.addEvent({
+      delay: 10,
+      repeat: 0,
+      callbackScope: this,
+      callback() {
+        Phaser.Actions.Call(this.AttackGroup.getChildren(), (child) => {
+          child.active = false;
+          this.time.addEvent({
+            delay: 500,
+            repeat: 0,
+            callbackScope: this,
+            callback() {
+              this.timer = true;
+              child.disableBody(true, true);
+            },
+          });
+        });
+      },
+    });
+  }
+
   update() {}
 }
