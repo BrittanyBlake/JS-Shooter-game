@@ -114,6 +114,28 @@ export default class GameScene extends Phaser.Scene {
     star.disableBody(true, true);
   }
 
+  stopEnemy(player, enemy) {
+    enemy.setActive(false);
+    enemy.body.enable = false;
+    enemy.setVisible(false);
+    player.setActive(false);
+    player.setVisible(false);
+    player.body.enable = false;
+  }
+
+  gameOver() {
+    this.time.addEvent({
+      delay: 60,
+      callback: () => {
+        if (!this.isGameOver) {
+          this.isGameOver = true;
+          this.scene.stop();
+          this.scene.start("GameOverScene");
+        }
+      },
+    });
+  }
+
   create() {
     this.timer = true;
     this.add
