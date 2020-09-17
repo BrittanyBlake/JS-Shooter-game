@@ -1,7 +1,7 @@
 import "phaser";
 import "./styles/style.css";
-import config from "./Config/config";
-import GameScene from "./Scenes/GameScene";
+import config from "./config/config";
+import GameScene from "./scenes/GameScene";
 
 
 // eslint-disable-next-line no-undef

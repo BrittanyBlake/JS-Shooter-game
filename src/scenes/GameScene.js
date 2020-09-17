@@ -1,4 +1,4 @@
-import LocalStorage from "../Objects/localStorage";
+import LocalStorage from "../objects/localStorage";
 import EnemyGroup from "../helper/enemyGroup";
 import EnemyAttackGroup from "../helper/enemyAttackGroup";
 import AttackGroup from "../helper/playerAttackGroup";
