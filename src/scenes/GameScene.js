@@ -1,4 +1,3 @@
-
 import LocalStorage from "../Objects/localStorage";
 import EnemyGroup from "../helper/enemyGroup";
 import EnemyAttackGroup from "../helper/enemyAttackGroup";
@@ -120,16 +119,56 @@ export default class GameScene extends Phaser.Scene {
   }
 
   gameOver() {
-    this.time.addEvent({
-      delay: 60,
-      callback: () => {
-        if (!this.isGameOver) {
-          this.isGameOver = true;
-          this.scene.stop();
-          this.scene.start("GameOverScene");
-        }
-      },
-    });
+    // this.time.addEvent({
+    //   delay: 60,
+    //   callback: () => {
+    //     if (!this.isGameOver) {
+    //       this.isGameOver = true;
+    //       this.scene.stop();
+    //       this.scene.start("GameOverScene");
+    //     }
+    //   },
+    // });
+  }
+
+  generateRandomNum(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  generateCoins() {
+    for (let i = 0; i < 4; i += 1) {
+      this.coins.push(
+        this.physics.add.staticGroup({
+          key: "star",
+          repeat: 100,
+          setXY: {
+            x: this.width * Math.random(1),
+            y: this.height * this.generateRandomNum(0.5, 0.8),
+            stepX: this.generateRandomNum(200, 1000),
+          },
+          setScale: { x: 0.5, y: 0.5 },
+        })
+      );
+    }
+  }
+
+  coinAnim(coins) {
+    if (!this.anims.get("spin")) {
+      this.anims.create({
+        key: "spin",
+        frames: this.anims.generateFrameNames("star", {
+          frames: [0, 1, 2, 3, 4, 5, 6, 7],
+        }),
+        frameRate: 5,
+        repeat: -1,
+      });
+    }
+
+    for (let i = 0; i < coins.length; i += 1) {
+      Phaser.Actions.Call(coins[i].getChildren(), (child) => {
+        child.anims.play("spin");
+      });
+    }
   }
 
   create() {
@@ -311,6 +350,10 @@ export default class GameScene extends Phaser.Scene {
       this.player
     );
     this.coins = [];
+
+    this.generateCoins();
+    this.coinAnim(this.coins);
+
 
     this.cameras.main.setBounds(0, 0, this.width * 90, this.height);
     this.cameras.main.startFollow(this.player);
