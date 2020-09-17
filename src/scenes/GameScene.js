@@ -1,7 +1,8 @@
-// import LocalStorage from "../Objects/localStorage";
-// import EnemyGroup from "../helper/enemyGroup";
-// import EnemyAttackGroup from "../helper/enemyAttackGroup";
-// import LaserGroup from "../helper/playerAttackGroup";
+
+import LocalStorage from "../Objects/localStorage";
+import EnemyGroup from "../helper/enemyGroup";
+import EnemyAttackGroup from "../helper/enemyAttackGroup";
+import LaserGroup from "../helper/playerAttackGroup";
 import playerAttack from "../../assets/images/effects2.png";
 import player from "../../assets/images/playerrun.png";
 import test from "../../assets/images/wolf.png";
@@ -105,6 +106,12 @@ export default class GameScene extends Phaser.Scene {
       }
       screenWidth += scene.scale.width;
     }
+  }
+  collectCoin(player, star) {
+    this.score += 10;
+    this.scoreText.setText(`Score: ${this.score}`);
+    LocalStorage.saveLocalStorage(this.score);
+    star.disableBody(true, true);
   }
 
   create() {
