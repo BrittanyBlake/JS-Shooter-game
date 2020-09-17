@@ -1,7 +1,7 @@
-import LocalStorage from "../Objects/localStorage";
-import EnemyGroup from "../helper/enemyGroup";
-import EnemyAttackGroup from "../helper/enemyAttackGroup";
-import LaserGroup from "../helper/playerAttackGroup";
+// import LocalStorage from "../Objects/localStorage";
+// import EnemyGroup from "../helper/enemyGroup";
+// import EnemyAttackGroup from "../helper/enemyAttackGroup";
+// import LaserGroup from "../helper/playerAttackGroup";
 import playerAttack from "../../assets/images/effects2.png";
 import player from "../../assets/images/playerrun.png";
 import test from "../../assets/images/wolf.png";
@@ -77,6 +77,218 @@ export default class GameScene extends Phaser.Scene {
     });
   }
 
-  create(){}
-  update(){}
+  backgroundRepeat(
+    scene,
+    width,
+    height,
+    text,
+    speed,
+    scale1,
+    scale2,
+    origin1,
+    origin2,
+    player
+  ) {
+    const count = 92 * speed;
+    let screenWidth = 0;
+    const platforms = scene.physics.add.staticGroup();
+
+    for (let i = 0; i < count; i += 1) {
+      const repeatImage = platforms
+        .create(width + screenWidth, height, text)
+        .setOrigin(origin1, origin2)
+        .setScrollFactor(speed)
+        .setScale(scale1, scale2);
+
+      if (text === "ground2") {
+        scene.physics.add.collider(player, repeatImage);
+      }
+      screenWidth += scene.scale.width;
+    }
+  }
+
+  create() {
+    this.timer = true;
+    this.add
+      .image(this.width * 0.5, this.height * 0.3, "sky")
+      .setScrollFactor(0)
+      .setScale(0.8, 0.7);
+    this.backgroundRepeat(
+      this,
+      0,
+      this.height * 0.45,
+      "cloud1",
+      0.07,
+      0.5,
+      0.5,
+      0,
+      1
+    );
+    this.backgroundRepeat(
+      this,
+      0,
+      this.height,
+      "mountain",
+      0.25,
+      0.5,
+      0.5,
+      0,
+      1
+    );
+    this.backgroundRepeat(
+      this,
+      this.width / 2,
+      this.height * 0.25,
+      "cloud2",
+      0.15,
+      0.5,
+      0.5,
+      0,
+      1
+    );
+
+    this.backgroundRepeat(
+      this,
+      this.width / 2.4,
+      this.height / 1.5,
+      "grass2",
+      0.5,
+      0.4,
+      0.4
+    );
+    this.backgroundRepeat(
+      this,
+      this.width / 7.5,
+      this.height / 1.5,
+      "grass3",
+      0.5,
+      0.4,
+      0.4
+    );
+    this.backgroundRepeat(
+      this,
+      this.width / 1.3,
+      this.height / 1.45,
+      "grass1",
+      0.5,
+      0.4,
+      0.4
+    );
+    this.backgroundRepeat(
+      this,
+      0,
+      this.height / 1.1,
+      "ground",
+      0.75,
+      0.5,
+      0.5,
+      0,
+      1
+    );
+    this.backgroundRepeat(
+      this,
+      this.width / 5,
+      this.height / 1.8,
+      "tree",
+      0.75,
+      0.5,
+      0.5
+    );
+    this.backgroundRepeat(
+      this,
+      this.width / 1.3,
+      this.height / 1.6,
+      "tree",
+      0.75,
+      0.35,
+      0.35
+    );
+    this.backgroundRepeat(
+      this,
+      this.width / 1.8,
+      this.height / 1.3,
+      "rock2",
+      0.75,
+      0.4,
+      0.4
+    );
+    this.backgroundRepeat(
+      this,
+      this.width / 3.5,
+      this.height / 1.3,
+      "rock3",
+      0.75,
+      0.4,
+      0.4
+    );
+
+    this.backgroundRepeat(
+      this,
+      this.width * 0.5,
+      this.height / 1.5,
+      "lumb",
+      0.75,
+      0.5,
+      0.5
+    );
+    this.backgroundRepeat(
+      this,
+      this.width * 0.501,
+      this.height / 1.43,
+      "light",
+      0.75,
+      0.5,
+      0.5
+    );
+    this.backgroundRepeat(
+      this,
+      this.width / 1.1,
+      this.height / 1.3,
+      "rock1",
+      0.75,
+      0.4,
+      0.4
+    );
+    this.backgroundRepeat(
+      this,
+      this.width / 2.5,
+      this.height / 1.3,
+      "flower2",
+      0.75,
+      0.4,
+      0.4
+    );
+    this.player = this.physics.add
+      .sprite(this.width * 0.1, this.height * 0.2, "player", 19)
+      .setScale(0.35, 0.35);
+    this.player.setBounce(0.2);
+    this.player.setFlipX(true);
+    this.player.body.offset.y = -80;
+    this.backgroundRepeat(
+      this,
+      this.width / 1.7,
+      this.height / 1.2,
+      "flower1",
+      0.75,
+      0.4,
+      0.4
+    );
+    this.backgroundRepeat(
+      this,
+      0,
+      this.height,
+      "ground2",
+      1.25,
+      0.45,
+      0.45,
+      0,
+      1,
+      this.player
+    );
+    this.coins = [];
+
+    this.cameras.main.setBounds(0, 0, this.width * 90, this.height);
+    this.cameras.main.startFollow(this.player);
+  }
+  update() {}
 }
