@@ -32,6 +32,15 @@ export default class GameScene extends Phaser.Scene {
     super("Game");
   }
 
+  init() {
+    this.score = 0;
+    this.playerSpeed = 290;
+    this.jumpSpeed = -600;
+    this.height = this.scale.height;
+    this.width = this.scale.width;
+    this.isGameOver = false;
+  }
+
   preload() {
     this.load.image("sky", sky);
     this.load.image("mountain", mountain);
@@ -73,7 +82,7 @@ export default class GameScene extends Phaser.Scene {
     });
   }
 
-  backgroundRepeat(
+  generateBackground(
     scene,
     width,
     height,
@@ -104,7 +113,7 @@ export default class GameScene extends Phaser.Scene {
   }
   collectCoin(player, star) {
     this.score += 10;
-    this.scoreText.setText(`Score: ${this.score}`);
+    this.scoreInfo.setText(`Score: ${this.score}`);
     LocalStorage.saveLocalStorage(this.score);
     star.disableBody(true, true);
   }
@@ -190,9 +199,9 @@ export default class GameScene extends Phaser.Scene {
   }
 
   checkOverlap(AttackGroup, enemyGroup, player, enemyAttackGroup, scene) {
-    // eslint-disable-next-line no-undef
+  
     Phaser.Actions.Call(AttackGroup.getChildren(), (laserChild) => {
-      scene.backgroundRepeat(
+      scene.generateBackground(
         scene,
         0,
         this.height,
@@ -204,9 +213,8 @@ export default class GameScene extends Phaser.Scene {
         1,
         laserChild
       );
-      // eslint-disable-next-line no-undef
       Phaser.Actions.Call(enemyGroup.getChildren(), (enemyChild) => {
-        scene.backgroundRepeat(
+        scene.generateBackground(
           scene,
           this.width * 0.5,
           this.height,
@@ -234,9 +242,8 @@ export default class GameScene extends Phaser.Scene {
         );
       });
     });
-    // eslint-disable-next-line no-undef
     Phaser.Actions.Call(AttackGroup.getChildren(), (laserChild) => {
-      // eslint-disable-next-line no-undef
+
       Phaser.Actions.Call(
         enemyAttackGroup.getChildren(),
         (enemyAttackChild) => {
@@ -258,7 +265,7 @@ export default class GameScene extends Phaser.Scene {
       .image(this.width * 0.5, this.height * 0.3, "sky")
       .setScrollFactor(0)
       .setScale(0.8, 0.7);
-    this.backgroundRepeat(
+    this.generateBackground(
       this,
       0,
       this.height * 0.45,
@@ -269,7 +276,7 @@ export default class GameScene extends Phaser.Scene {
       0,
       1
     );
-    this.backgroundRepeat(
+    this.generateBackground(
       this,
       0,
       this.height,
@@ -280,7 +287,7 @@ export default class GameScene extends Phaser.Scene {
       0,
       1
     );
-    this.backgroundRepeat(
+    this.generateBackground(
       this,
       this.width / 2,
       this.height * 0.25,
@@ -292,7 +299,7 @@ export default class GameScene extends Phaser.Scene {
       1
     );
 
-    this.backgroundRepeat(
+    this.generateBackground(
       this,
       this.width / 2.4,
       this.height / 1.5,
@@ -301,7 +308,7 @@ export default class GameScene extends Phaser.Scene {
       0.4,
       0.4
     );
-    this.backgroundRepeat(
+    this.generateBackground(
       this,
       this.width / 7.5,
       this.height / 1.5,
@@ -310,7 +317,7 @@ export default class GameScene extends Phaser.Scene {
       0.4,
       0.4
     );
-    this.backgroundRepeat(
+    this.generateBackground(
       this,
       this.width / 1.3,
       this.height / 1.45,
@@ -319,7 +326,7 @@ export default class GameScene extends Phaser.Scene {
       0.4,
       0.4
     );
-    this.backgroundRepeat(
+    this.generateBackground(
       this,
       0,
       this.height / 1.1,
@@ -330,7 +337,7 @@ export default class GameScene extends Phaser.Scene {
       0,
       1
     );
-    this.backgroundRepeat(
+    this.generateBackground(
       this,
       this.width / 5,
       this.height / 1.8,
@@ -339,7 +346,7 @@ export default class GameScene extends Phaser.Scene {
       0.5,
       0.5
     );
-    this.backgroundRepeat(
+    this.generateBackground(
       this,
       this.width / 1.3,
       this.height / 1.6,
@@ -348,7 +355,7 @@ export default class GameScene extends Phaser.Scene {
       0.35,
       0.35
     );
-    this.backgroundRepeat(
+    this.generateBackground(
       this,
       this.width / 1.8,
       this.height / 1.3,
@@ -357,7 +364,7 @@ export default class GameScene extends Phaser.Scene {
       0.4,
       0.4
     );
-    this.backgroundRepeat(
+    this.generateBackground(
       this,
       this.width / 3.5,
       this.height / 1.3,
@@ -367,7 +374,7 @@ export default class GameScene extends Phaser.Scene {
       0.4
     );
 
-    this.backgroundRepeat(
+    this.generateBackground(
       this,
       this.width * 0.5,
       this.height / 1.5,
@@ -376,7 +383,7 @@ export default class GameScene extends Phaser.Scene {
       0.5,
       0.5
     );
-    this.backgroundRepeat(
+    this.generateBackground(
       this,
       this.width * 0.501,
       this.height / 1.43,
@@ -385,7 +392,7 @@ export default class GameScene extends Phaser.Scene {
       0.5,
       0.5
     );
-    this.backgroundRepeat(
+    this.generateBackground(
       this,
       this.width / 1.1,
       this.height / 1.3,
@@ -394,7 +401,7 @@ export default class GameScene extends Phaser.Scene {
       0.4,
       0.4
     );
-    this.backgroundRepeat(
+    this.generateBackground(
       this,
       this.width / 2.5,
       this.height / 1.3,
@@ -409,7 +416,7 @@ export default class GameScene extends Phaser.Scene {
     this.player.setBounce(0.2);
     this.player.setFlipX(true);
     this.player.body.offset.y = -80;
-    this.backgroundRepeat(
+    this.generateBackground(
       this,
       this.width / 1.7,
       this.height / 1.2,
@@ -418,7 +425,7 @@ export default class GameScene extends Phaser.Scene {
       0.4,
       0.4
     );
-    this.backgroundRepeat(
+    this.generateBackground(
       this,
       0,
       this.height,
@@ -472,6 +479,19 @@ export default class GameScene extends Phaser.Scene {
       this
     );
 
+    this.scoreInfo = this.add
+      .text(16, 16, "score: 0", { fontSize: "32px", fill: "#000" })
+      .setScrollFactor(0);
+    this.physics.add.overlap(
+      this.player,
+      [this.coins[0], this.coins[1], this.coins[2], this.coins[3]],
+      this.collectCoin,
+      null,
+      this
+    );
+    this.cursors = this.input.keyboard.createCursorKeys();
+    this.keyX = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
+
     this.cameras.main.setBounds(0, 0, this.width * 90, this.height);
     this.cameras.main.startFollow(this.player);
   }
@@ -506,7 +526,7 @@ export default class GameScene extends Phaser.Scene {
     });
   }
 
-  attackInterval() {
+  attackTimer() {
     this.timer = false;
     this.time.addEvent({
       delay: 10,
@@ -529,5 +549,44 @@ export default class GameScene extends Phaser.Scene {
     });
   }
 
-  update() {}
+  update() {
+    const down =
+      this.player.body.blocked.down || this.player.body.touching.down;
+
+    if (this.cursors.left.isDown) {
+      this.player.setVelocityX(-this.playerSpeed);
+      this.player.flipX = true;
+      if (down && !this.player.anims.isPlaying)
+        this.player.anims.play("walking");
+    } else if (this.cursors.right.isDown) {
+      this.player.setVelocityX(this.playerSpeed);
+      this.player.flipX = false;
+      if (down && !this.player.anims.isPlaying)
+        this.player.anims.play("walking");
+    } else {
+      this.player.body.setVelocityX(0);
+      if (down) this.player.setFrame(19);
+    }
+
+    if (down && (this.cursors.space.isDown || this.cursors.up.isDown)) {
+      this.player.anims.stop("walking");
+      this.player.body.setVelocityY(-400);
+      this.player.setFrame(8);
+    }
+
+    if (this.keyX.isDown && this.player.flipX === true) {
+      if (this.timer) {
+        this.AttackGroup.shoot(this.player.x - 50, this.player.y + 40);
+        this.AttackGroup.setVelocityX(-700);
+        this.attackTimer();
+      }
+    }
+
+    if (this.keyX.isDown && this.player.flipX !== true) {
+      if (this.timer) {
+        this.AttackGroup.shoot(this.player.x + 50, this.player.y + 40);
+        this.attackTimer();
+      }
+    }
+  }
 }
