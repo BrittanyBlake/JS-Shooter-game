@@ -66,15 +66,11 @@ export default class GameScene extends Phaser.Scene {
     this.load.spritesheet("player", player, {
       frameWidth: 480,
       frameHeight: 480,
-      //  margin: -40,
-      // spacing: 2,
     });
 
     this.load.spritesheet("playerAttack", playerAttack, {
       frameWidth: 120,
       frameHeight: 105,
-      // margin: 15,
-      // spacing: 5,
     });
   }
 
