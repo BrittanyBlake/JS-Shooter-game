@@ -1,18 +1,26 @@
-import Phaser from "phaser";
+import "phaser";
 import "./styles/style.css";
-import GameScene from './Scenes/GameScene';
+import config from "./Config/config";
+import GameScene from "./Scenes/GameScene";
 
-const config = {
-  type: Phaser.AUTO,
-  width: 800,
-  height: 600,
-  physics: {
-    default: "arcade",
-    arcade: {
-      gravity: { y: 200 },
-    },
-  },
-  scene: [GameScene],
-};
 
-export default new Phaser.Game(config);
+// eslint-disable-next-line no-undef
+class Game extends Phaser.Game {
+  constructor() {
+    super(config);
+    // const model = new Sound();
+    // this.globals = { model, bgMusic: null };
+    // this.scene.add("Boot", BootScene);
+    // this.scene.add("Preloader", PreloaderScene);
+    // this.scene.add("Title", TitleScene);
+    // this.scene.add("Options", OptionsScene);
+    // this.scene.add("Credits", CreditsScene);
+    // this.scene.add("LeaderBoardScene", LeaderBoardScene);
+    this.scene.add("Game", GameScene);
+    // this.scene.add("SceneGameOver", SceneGameOver);
+    // this.scene.add("StoryScene", StoryScene);
+    // this.scene.start("Boot");
+  }
+}
+
+window.game = new Game();
