@@ -1,18 +1,18 @@
 body {
-   margin: 0;
-   padding: 0;
-   background-color: black;
-   box-sizing: border-box;
- }
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  box-sizing: border-box;
+}
 
- canvas {
-   position: absolute;
-   margin: 0 auto;
-   width: 100% !important;
-   height: 100%;
- }
+canvas {
+  position: absolute;
+  margin: 0 auto;
+  width: 100% !important;
+  height: 100%;
+}
 
- .input {
+.input {
   margin-bottom: 55px;
   height: 50px;
   font-size: 32px;
