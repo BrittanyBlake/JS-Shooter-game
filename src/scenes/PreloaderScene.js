@@ -3,7 +3,7 @@ import blueButton1 from "../../assets/ui/blue_button02.png";
 import blueButton2 from "../../assets/ui/blue_button03.png";
 import box from "../../assets/ui/grey_box.png";
 import checkedBox from "../../assets/ui/blue_boxCheckmark.png";
-import bgMusic from "../../assets/BattleMusic.ogg";
+import bgMusic from "../../assets/titleTheme.mp3";
 export default class PreloaderScene extends Phaser.Scene {
   constructor() {
     super("Preloader");

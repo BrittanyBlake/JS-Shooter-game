@@ -1,5 +1,5 @@
 import "phaser";
-import Button from "../Objects/Button";
+import Button from "../objects/Button";
 
 export default class OptionsScene extends Phaser.Scene {
   constructor() {

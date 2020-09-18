@@ -1,5 +1,5 @@
 import "phaser";
-import Button from "../Objects/Button";
+import Button from "../objects/Button";
 export default class TitleScene extends Phaser.Scene {
   constructor() {
     super("Title");

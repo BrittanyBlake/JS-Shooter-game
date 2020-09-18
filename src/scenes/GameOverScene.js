@@ -1,8 +1,8 @@
 
-import Button from "../Objects/Button";
-import API from "../Objects/api";
-import Dom from "../Objects/dom";
-import LocalStorage from "../Objects/localStorage";
+import Button from "../objects/Button";
+import API from "../objects/api";
+import Dom from "../objects/dom";
+import LocalStorage from "../objects/localStorage";
 import logoBg from "../../assets/images/logo-bg.png";
 import enemyImg from "../../assets/images/wolf.png";
 import enemyImg2 from "../../assets/images/enemy3attack.png";
