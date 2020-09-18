@@ -45,7 +45,7 @@ export default class InstructionScene extends Phaser.Scene {
       "blueButton2",
       "⬆️"
     );
-    this.upText = this.add.text(300, 215, "Make the player jump", {
+    this.upText = this.add.text(300, 215, "Make the player jump,", {
       fontSize: 24,
     });
     this.jumpText = this.add.text(300, 240, "You can also use the spacebar.", {
