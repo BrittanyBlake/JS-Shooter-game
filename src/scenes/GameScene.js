@@ -128,16 +128,16 @@ export default class GameScene extends Phaser.Scene {
   }
 
   gameOver() {
-    // this.time.addEvent({
-    //   delay: 60,
-    //   callback: () => {
-    //     if (!this.isGameOver) {
-    //       this.isGameOver = true;
-    //       this.scene.stop();
-    //       this.scene.start("GameOverScene");
-    //     }
-    //   },
-    // });
+    this.time.addEvent({
+      delay: 60,
+      callback: () => {
+        if (!this.isGameOver) {
+          this.isGameOver = true;
+          this.scene.stop();
+          this.scene.start("GameOverScene");
+        }
+      },
+    });
   }
 
   generateRandomNum(min, max) {

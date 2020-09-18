@@ -105,7 +105,7 @@ export default class GameOverScene extends Phaser.Scene {
       "blueButton1",
       "blueButton2",
       "Top Scores",
-      "Leaderboard"
+      "LeaderBoardScene"
     );
 
     Dom.form();

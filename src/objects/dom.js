@@ -28,7 +28,7 @@ const Dom = (() => {
       button.onclick = () => {
         if (input.value !== "") {
           form.innerHTML = '<h3 id="wait">Please wait... </h3>';
-          API.postScores(input.value, score).then((response) => {
+          API.submitScores(input.value, score).then((response) => {
             form.innerHTML = `<h3 id="response">${response.result} </h3>`;
           });
         } else {
