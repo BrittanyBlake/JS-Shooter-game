@@ -20,7 +20,7 @@ import cloud4 from '../../assets/images/cloud4.png';
 import cloud3 from '../../assets/images/cloud3.png';
 import cloud2 from '../../assets/images/cloud2.png';
 import cloud1 from '../../assets/images/cloud1.png';
-import tree from '../../assets/images/tree.png';
+import tree from '../../assets/images/Tree.png';
 import ground from '../../assets/images/ground.png';
 import grass3 from '../../assets/images/grass3.png';
 import grass2 from '../../assets/images/grass2.png';
