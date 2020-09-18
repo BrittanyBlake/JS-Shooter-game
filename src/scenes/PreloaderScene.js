@@ -1,12 +1,13 @@
-import "phaser";
-import blueButton1 from "../../assets/ui/blue_button02.png";
-import blueButton2 from "../../assets/ui/blue_button03.png";
-import box from "../../assets/ui/grey_box.png";
-import checkedBox from "../../assets/ui/blue_boxCheckmark.png";
-import bgMusic from "../../assets/titleTheme.mp3";
+import Phaser from 'phaser';
+import blueButton1 from '../../assets/ui/blue_button02.png';
+import blueButton2 from '../../assets/ui/blue_button03.png';
+import box from '../../assets/ui/grey_box.png';
+import checkedBox from '../../assets/ui/blue_boxCheckmark.png';
+import bgMusic from '../../assets/titleTheme.mp3';
+
 export default class PreloaderScene extends Phaser.Scene {
   constructor() {
-    super("Preloader");
+    super('Preloader');
   }
 
   init() {
@@ -17,18 +18,18 @@ export default class PreloaderScene extends Phaser.Scene {
     const width = this.scale.width * 0.5;
     const height = this.scale.height * 0.5;
     this.logo = this.add
-      .sprite(width, height * 0.5, "logo", 0)
+      .sprite(width, height * 0.5, 'logo', 0)
       .setScale(0.7, 0.7);
-    this.load.image("blueButton1", blueButton1);
-    this.load.image("blueButton2", blueButton2);
-    this.load.image("box", box);
-    this.load.image("checkedBox", checkedBox);
-    this.load.audio("bgMusic", bgMusic);
+    this.load.image('blueButton1', blueButton1);
+    this.load.image('blueButton2', blueButton2);
+    this.load.image('box', box);
+    this.load.image('checkedBox', checkedBox);
+    this.load.audio('bgMusic', bgMusic);
 
-    if (!this.anims.get("logo")) {
+    if (!this.anims.get('logo')) {
       this.anims.create({
-        key: "logo",
-        frames: this.anims.generateFrameNames("logo", {
+        key: 'logo',
+        frames: this.anims.generateFrameNames('logo', {
           frames: [18, 19, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
         }),
         frameRate: 7.5,
@@ -36,7 +37,7 @@ export default class PreloaderScene extends Phaser.Scene {
       });
     }
 
-    this.logo.anims.play("logo");
+    this.logo.anims.play('logo');
 
     const progressBar = this.add.graphics();
     const progressBox = this.add.graphics();
@@ -45,10 +46,10 @@ export default class PreloaderScene extends Phaser.Scene {
     const loadingText = this.make.text({
       x: width,
       y: height - 50,
-      text: "Loading...",
+      text: 'Loading...',
       style: {
-        font: "20px monospace",
-        fill: "white",
+        font: '20px monospace',
+        fill: 'white',
       },
     });
     loadingText.setOrigin(0.5, 0.5);
@@ -56,10 +57,10 @@ export default class PreloaderScene extends Phaser.Scene {
     const percentText = this.make.text({
       x: width - 25,
       y: height - 5,
-      text: "0%",
+      text: '0%',
       style: {
-        font: "18px monospace",
-        fill: "white",
+        font: '18px monospace',
+        fill: 'white',
       },
     });
     percentText.setOrigin(0.5, 0.5);
@@ -67,26 +68,26 @@ export default class PreloaderScene extends Phaser.Scene {
     const assetText = this.make.text({
       x: width,
       y: height + 50,
-      text: "",
+      text: '',
       style: {
-        font: "18px monospace",
-        fill: "white",
+        font: '18px monospace',
+        fill: 'white',
       },
     });
     assetText.setOrigin(0.5, 0.5);
 
-    this.load.on("progress", (value) => {
+    this.load.on('progress', (value) => {
       percentText.setText(`${parseInt(value * 100, 10)}%`);
       progressBar.clear();
       progressBar.fillStyle(0xffffff, 1);
       progressBar.fillRect(width / 1.7, 280, 300 * value, 30);
     });
 
-    this.load.on("fileprogress", (file) => {
+    this.load.on('fileprogress', (file) => {
       assetText.setText(`Loading asset: ${file.key}`);
     });
 
-    this.load.on("complete", () => {
+    this.load.on('complete', () => {
       progressBar.destroy();
       progressBox.destroy();
       loadingText.destroy();
@@ -101,7 +102,7 @@ export default class PreloaderScene extends Phaser.Scene {
   ready() {
     this.readyCount += 1;
     if (this.readyCount === 2) {
-      this.scene.start("Title");
+      this.scene.start('Title');
     }
   }
 }

@@ -12,7 +12,7 @@ export default class Sound {
   get musicOn() {
     return this._musicOn;
   }
-  
+
   set bgMusicPlaying(value) {
     this._bgMusicPlaying = value;
   }

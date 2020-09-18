@@ -1,29 +1,29 @@
 module.exports = {
-  entry: "./src/index.js",
+  entry: './src/index.js',
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: ["file-loader"],
+        use: ['file-loader'],
       },
       {
         test: /\.(gif|png)$/,
         use: [
           {
-            loader: "file-loader",
+            loader: 'file-loader',
             options: {
-              name: "[name].[ext]",
+              name: '[name].[ext]',
             },
           },
         ],
       },
       {
         test: /\.(mp3|ogg|wav)$/,
-        loader: "file-loader",
+        loader: 'file-loader',
       },
     ],
   },

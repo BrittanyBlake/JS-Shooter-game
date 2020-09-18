@@ -1,4 +1,4 @@
-import "phaser";
+import Phaser from 'phaser';
 
 const config = {
   type: Phaser.AUTO,
@@ -6,10 +6,10 @@ const config = {
   height: 600,
 
   physics: {
-    default: "arcade",
+    default: 'arcade',
     arcade: {
       gravity: { y: 600 },
-      //debug: true,
+      // debug: true,
     },
   },
 };

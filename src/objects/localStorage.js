@@ -1,4 +1,4 @@
- const LocalStorage = (() => {
+const LocalStorage = (() => {
   function saveLocalStorage(score) {
     localStorage.setItem('score', JSON.stringify(score));
   }

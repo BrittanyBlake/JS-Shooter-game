@@ -1,4 +1,6 @@
+import Phaser from 'phaser';
 import EnemyAttack from './enemyAttack';
+
 export default class EnemyAttackGroup extends Phaser.Physics.Arcade.Group {
   constructor(scene) {
     super(scene.physics.world, scene);

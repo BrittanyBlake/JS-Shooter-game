@@ -1,15 +1,16 @@
-import "phaser";
-import Button from "../objects/Button";
+import Phaser from 'phaser';
+import Button from '../objects/Button';
+
 export default class InstructionScene extends Phaser.Scene {
   constructor() {
-    super("InstructionScene");
+    super('InstructionScene');
   }
 
   create() {
     const height = this.scale.height * 0.5;
     const width = this.scale.width * 0.5;
 
-    this.text = this.add.text(150, 40, "Game Play Instructions", {
+    this.text = this.add.text(150, 40, 'Game Play Instructions', {
       fontSize: 40,
     });
 
@@ -17,11 +18,11 @@ export default class InstructionScene extends Phaser.Scene {
       this,
       150,
       120,
-      "blueButton1",
-      "blueButton2",
-      "⬅️"
+      'blueButton1',
+      'blueButton2',
+      '⬅️',
     );
-    this.leftText = this.add.text(300, 100, "Move the player to the left", {
+    this.leftText = this.add.text(300, 100, 'Move the player to the left', {
       fontSize: 24,
     });
 
@@ -29,11 +30,11 @@ export default class InstructionScene extends Phaser.Scene {
       this,
       150,
       180,
-      "blueButton1",
-      "blueButton2",
-      "➡️"
+      'blueButton1',
+      'blueButton2',
+      '➡️',
     );
-    this.rightText = this.add.text(300, 160, "Move the player to the right", {
+    this.rightText = this.add.text(300, 160, 'Move the player to the right', {
       fontSize: 24,
     });
 
@@ -41,14 +42,14 @@ export default class InstructionScene extends Phaser.Scene {
       this,
       150,
       240,
-      "blueButton1",
-      "blueButton2",
-      "⬆️"
+      'blueButton1',
+      'blueButton2',
+      '⬆️',
     );
-    this.upText = this.add.text(300, 215, "Make the player jump,", {
+    this.upText = this.add.text(300, 215, 'Make the player jump,', {
       fontSize: 24,
     });
-    this.jumpText = this.add.text(300, 240, "You can also use the spacebar.", {
+    this.jumpText = this.add.text(300, 240, 'You can also use the spacebar.', {
       fontSize: 24,
     });
 
@@ -56,15 +57,15 @@ export default class InstructionScene extends Phaser.Scene {
       this,
       150,
       300,
-      "blueButton1",
-      "blueButton2",
-      "✖"
+      'blueButton1',
+      'blueButton2',
+      '✖',
     );
-    this.shootText = this.add.text(300, 280, "Shoot the enemies", {
+    this.shootText = this.add.text(300, 280, 'Shoot the enemies', {
       fontSize: 24,
     });
 
-    this.readyText = this.add.text(width * 0.65, 380, "Ready to Play?", {
+    this.readyText = this.add.text(width * 0.65, 380, 'Ready to Play?', {
       fontSize: 30,
     });
 
@@ -72,20 +73,20 @@ export default class InstructionScene extends Phaser.Scene {
       this,
       200,
       height + 200,
-      "blueButton1",
-      "blueButton2",
-      "Back",
-      "Title"
+      'blueButton1',
+      'blueButton2',
+      'Back',
+      'Title',
     );
 
     this.playButton = new Button(
       this,
       600,
       height + 200,
-      "blueButton1",
-      "blueButton2",
-      "Play",
-      "Game"
+      'blueButton1',
+      'blueButton2',
+      'Play',
+      'Game',
     );
   }
 }
