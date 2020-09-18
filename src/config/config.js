@@ -1,7 +1,6 @@
 import "phaser";
 
 const config = {
-  // eslint-disable-next-line no-undef
   type: Phaser.AUTO,
   width: 800,
   height: 600,
