@@ -56,7 +56,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This is a 2D browser-based shooter game built with Phaser 3. The main character is a witch who gets attacked by a magic troll and his foxes trying to stop them from collectiong coins. For every coin collected, you will get 10 points and in the end you can see how you compare to other users. 
+This is a 2D browser-based shooter game built with Phaser 3. The main character is a witch who gets attacked by a magic troll and his wolf trying to stop them from collectiong coins. For every coin collected, you will get 10 points and in the end you can see how you compare to other users. 
 
 When the game loads, you will be taken to a screen with 4 options:
 * Play => this takes you to the screen with the instructions. After reading the instructions you can choose to go back to the main menu or to start the game
