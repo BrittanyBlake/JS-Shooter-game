@@ -1,0 +1,72 @@
+{
+  "name": "js-shooter-game",
+  "version": "1.0.0",
+  "description": "This is my capstone assessment where I was tasked with building a shooter video game using Javascript and the game engine Phaser.",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --config webpack.dev.js --open",
+    "build": "webpack --config webpack.prod.js",
+    "dev": "webpack --mode development",
+    "test": "jest"
+  },
+  "jest": {
+    "setupFiles": [
+      "jest-canvas-mock"
+    ],
+    "setupFilesAfterEnv": [
+      "jest-expect-subclass"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less|sass|scss)$": "<rootDir>/test/mocks/styleMock.js",
+      "\\.(gif|ttf|eot|svg|png|mp3)$": "<rootDir>/test/mocks/fileMock.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrittanyBlake/JS-Shooter-game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BrittanyBlake/JS-Shooter-game/issues"
+  },
+  "homepage": "https://github.com/BrittanyBlake/JS-Shooter-game#readme",
+  "devDependencies": {
+    "@babel/plugin-transform-regenerator": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "css-loader": "^4.2.1",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "file-loader": "^6.0.0",
+    "jest": "^26.1.0",
+    "jest-canvas-mock": "^2.2.0",
+    "jest-expect-subclass": "^1.0.1",
+    "raw-loader": "^0.5.1",
+    "style-loader": "^1.2.1",
+    "stylelint": "^13.3.3",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-csstree-validator": "^1.8.0",
+    "stylelint-scss": "^3.17.2",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "express": "^4.17.1",
+    "optimize-css-assets-webpack-plugin": "^5.0.4",
+    "phaser": "^3.20.1",
+    "html-webpack-plugin": "^4.4.1",
+    "terser-webpack-plugin": "^3.1.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "webpack-merge": "^5.0.9"
+  }
+}
