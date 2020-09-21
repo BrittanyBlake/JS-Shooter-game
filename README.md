@@ -61,7 +61,7 @@ This is a 2D browser-based shooter game built with Phaser 3. The main character 
 When the game loads, you will be taken to a screen with 4 options:
 * Play => this takes you to the screen with the instructions. After reading the instructions you can choose to go back to the main menu or to start the game
 * Options => from here, you can enable or disable the music/sound. 
-* Credits => You can see the desgin details and contributions.
+* Credits => You can see the design details and contributions.
 * Leaderboard => from here, you can see the users with the top scores and try to beat their scores 
 
 <!-- HOW IT WORKS -->
