@@ -46,11 +46,12 @@
 
 * [About the Project](#about-the-project)
   * [Built With](#built-with)
-* [Contact](#Authors)
-* [Acknowledgements](#acknowledgements)
-* [How it works](#How-it-works)
+  * [How it works](#How-it-works)
 * [Game Design](#Game-design)
 * [Game Development](#Game-development)
+* [Contact](#Authors)
+* [Acknowledgements](#acknowledgements)
+
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -165,6 +166,23 @@ This project was built using these technologies.
 
 <!--GAME DEVELOPMENT-->
 ## Game Development
+### Day 0:
+* On the first day, after requesting for my project, I spent the day reading the requirements and looking at tutorials. I then set up my repository, configured my webpack and gathered the character sprites, background and music that I would be using in my project. By the end of the day, I had a shell of the game I wanted to create. 
+
+### Day 1: 
+* The next day, my plan was to start the game logic, however I got stuck and needed to watch a few more tutorials about the game. By the end of the day, I felt I had a deeper understanding of how to approach the project.
+
+### Day 2:
+* On the second working day, my intention was to do the game logic. I spent the day working on the game logic. I also completed the scores and implemented my API key for the leaderboards.
+
+### Day 3:
+* On the third day, I completed all of the other scenes (preloader, title, game over, etc.). Then, I worked on testing my project and deploying my project to netlify. By the end of day 3, I had a fully functional project that was ready to submit for a review. All that was left was to complete the README. 
+
+### Weekend:
+* Over the weekend, I asked various friends and family members to play my game in order to make sure all of the features are working correctly. I then played the game myself in order to create a few gifs to add into my README. I also then began writing my README documentation.
+
+### Day 4:
+* On the morning of day 4, I finished my README and prepared to submit my project for a review. 
 
 <!-- ABOUT THE PROJECT -->
 
